@@ -25,6 +25,10 @@ public class Node {
     double confidenceScore; 
     String key, sentence; 
 
+    // AVL Imlementation 
+
+    int height = 1; 
+
     //Constructor 
     public Node(String key, String sentence, double confidenceScore){
         this.key = key; 
