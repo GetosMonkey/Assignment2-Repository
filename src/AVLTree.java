@@ -118,9 +118,63 @@ public class AVLTree {
             height(node.getLeftChild()), 
             height(node.getRightChild())); 
 
-        node.setHeight(); 
+        node.setHeight( maxHeight + 1); 
     }
     
+    public int height(Node node){ 
+        return node != null ? node.getHeight() : 0; 
+    }
+
+    // Applying the rotation based of of 4 cases 
+
+    public Node applyRotation ( Node node){
+
+        int balance = balance(node); 
+
+        // case 1: left-heavy
+            if (balance > 1) {
+                // case 3: left-right 
+                if (balance(node.getLeftChild()) < 0){
+                    node.setLeftChild(rotateLeft(node.getLeftChild()));
+                }
+                return rotateRight(node); 
+            }
+        // case 2: right-heavy
+            if (balance < -1){
+                // case 4: right-left
+                if (balance(node.getRightChild()) > 0){
+                    node.setRightChild(rotateRight(node.getRightChild()));
+                }
+                return rotateLeft(node); 
+            }
+        return node; 
+    }
+
+    public Node rotateRight(Node node){
+        Node leftNode = node.getLeftChild(); 
+        Node centerNode = leftNode.getRightChild(); 
+        leftNode.setRightChild(node);
+        node.setLeftChild(centerNode);
+        updateHeight(node); 
+        updateHeight (leftNode); 
+        return leftNode; 
+    }
+
+    public Node rotateLeft(Node node){
+        Node rightNode = node.getRightChild(); 
+        Node centerNode = rightNode.getLeftChild(); 
+        rightNode.setLeftChild(node);
+        node.setRightChild(centerNode);
+        updateHeight(node);
+        updateHeight(rightNode); 
+        return rightNode; 
+    }
+
+    public int balance (Node node){
+        return node != null
+                    ? height(node.getLeftChild())-height(node.getRightChild())
+                    : 0; 
+    }
     //________________________________________________________________________________
 
     // Recursive PrintTree method to test if my Tree is correctly updating:

@@ -2,7 +2,7 @@
  * 
  * 
  * 
- * @author Maryam Abrahams
+ * @author Maryam Abrahams The Nigga 
  * @version 1.0
  * @since 2025-03-23
  */
@@ -11,5 +11,56 @@
  
 public class GenericsKbAVLApp{ 
 
+        AVLTree tree = new AVLTree(); 
+        int x = 0; 
+        Parsefile file; 
+
+        public GenericsKbAVLApp(){}
+
+        public void setFile(Parsefile path){
+            file = path; 
+        }
+
+        
+        public static void main(String [] args){
+
+            int choice = 0; 
+            Scanner sc = new Scanner(System.in); 
+            GenericsKbAVLApp main = new GenericsKbAVLApp(); 
+
+            System.out.println("Welcome to GenericsKb :)"); 
+
+            while (choice != 3) {
+                
+                //updates if the confidence score is higher than an existing one 
+                System.out.println("""
+
+                        Choose an action from the menu:
+                        1. Load a knowledge base from a file.
+                        2. Search for terms in the file and print to an output file.
+                        3. Quit
+    
+                        Enter your choice: 
+                        """);
+    
+                        choice = sc.nextInt();
+                        sc.nextLine(); //fixing future sc bugs by consuming trailing \n 
+    
+                    switch(choice){
+
+                    case 1:
+                        
+                        break; 
+
+                    case 2:
+                        
+                        break;
+
+                }}
+
+                System.out.print("\nThanks for Using GenericsKb :)");
+                sc.close();
+
+        }
 
 }

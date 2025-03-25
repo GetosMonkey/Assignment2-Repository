@@ -25,9 +25,7 @@ public class Node {
     double confidenceScore; 
     String key, sentence; 
 
-    // AVL Imlementation 
-
-    int height = 1; 
+   
 
     //Constructor 
     public Node(String key, String sentence, double confidenceScore){
@@ -53,4 +51,15 @@ public class Node {
         this.right = newNode; 
     }
 
+    // AVL Imlementation 
+
+    int height = 1; 
+
+    public int getHeight(){ 
+        return height; 
+    }
+
+    public void setHeight(int newHeight){
+        this.height = newHeight; 
+    }
 }
