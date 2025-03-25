@@ -140,7 +140,7 @@ public class GenericsKbAVLApp{
 
                         System.out.println("Enter the name of the file directory: "); 
                         String filename = sc.nextLine(); 
-                        Parsefile path = new Paresfile(filename); 
+                        Parsefile path = new Parsefile(filename); 
                         main.setFile(path); 
 
                         main.convertToTree(path); 
