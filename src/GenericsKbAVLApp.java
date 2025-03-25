@@ -1,3 +1,13 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * The GenericsKbAVLApp class is responsible for managing a knowledge base 
  * using an AVL Tree. It provides functionality to load data from a file, 
@@ -61,18 +71,12 @@ public class GenericsKbAVLApp{
 
         // 2) Parsing and printing our file: 
 
-        public void createFile(){
+        public void createFile(String keyfile){
 
             if (tree.isEmpty()){
                 System.out.println("The database is empty. Please populate it first.");
                 return;
             }
-
-            String keyfile = ""; 
-
-            Scanner sc = new Scanner(System.in); 
-            System.out.println("Please enter the name of the list of keys you want to parse: "); 
-            keyfile = sc.nextLine();
 
                 // Method to parse the file and populate the database
 
@@ -82,7 +86,7 @@ public class GenericsKbAVLApp{
 
                         try (BufferedReader br = new BufferedReader(new FileReader(keyfile))) {
 
-                            BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"))
+                            BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt")); 
 
                             while((line = br.readLine()) != null){
 
@@ -97,9 +101,8 @@ public class GenericsKbAVLApp{
                                 bw.newLine(); 
                                 //__________________________________
                             }
+                            bw.close(); 
                         }
-
-                        bw.close(); 
 
                     } catch (FileNotFoundException e){ 
                         e.printStackTrace();
@@ -149,7 +152,11 @@ public class GenericsKbAVLApp{
 
                     case 2:
 
-                        main.createFile(); 
+                        String keyfile = ""; 
+                        System.out.println("Please enter the name of the file pf list of keys you want to parse: "); 
+                        keyfile = sc.nextLine();
+
+                        main.createFile(keyfile); 
                         
                         break;
 
