@@ -1,4 +1,18 @@
 /**
+ * The AVLTree class implements a self-balancing AVL Tree to efficiently store 
+ * and retrieve knowledge base entries. It supports insertion, searching, and 
+ * traversal operations while maintaining balanced tree properties.
+ *
+ * Features:
+ * - Balanced binary search tree structure.
+ * - Insert nodes with a key, sentence, and confidence score.
+ * - Search for nodes using a key or both key and sentence.
+ * - Apply AVL rotations (left and right) to maintain tree balance.
+ * - Supports in-order traversal and printing of the tree contents.
+ *
+ * Usage:
+ * This class is used in GenericsKbAVLApp to store and manage knowledge base 
+ * entries while ensuring optimal search efficiency.
  * 
  * Resource: https://www.youtube.com/watch?v=Jj9Mit24CWk
  * Credit : Geekific, AVL Trees

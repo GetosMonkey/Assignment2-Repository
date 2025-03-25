@@ -11,6 +11,4 @@ public interface Tree{
     void traverse();  
     boolean isEmpty();  
 
-
-
 }

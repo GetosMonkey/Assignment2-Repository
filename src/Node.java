@@ -2,9 +2,9 @@
  * 
  * Same Node class template as in Assignment 1
  * 
- * The Node class represents a single entry in the Binary Search Tree. 
+ * The Node class represents a single entry in the AVL Tree. 
  * It contains a key (term), a sentence, a confidence score, and references 
- * to left and right child nodes.
+ * to left and right child nodes as well as a height for each node now.
  * 
  * Fields:
  * - key: The term associated with the knowledge entry.
