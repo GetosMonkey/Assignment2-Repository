@@ -21,19 +21,21 @@ public class Experiment {
 
     public static final int[] trial_sizes = {5, 50, 500, 1000, 2500, 5000, 7500, 10000, 25000, 50000}; 
     public static final int num_trials = 10; 
-    public static final String output_file = "results"; 
+    public static String output_file = ""; 
 
     public static void main(String[] args){
 
         Scanner sc = new Scanner(System.in); 
         System.out.println("Please enter the directory to your full dataset:");
         String datasetFile = sc.nextLine(); 
+        System.out.println("Please enter the name of the file you'd like to save your statistics to: "); 
+        output_file = sc.nextLine() + ".csv"; 
 
         Parsefile fullDataset = new Parsefile(datasetFile); 
 
         List<String[]>  database = fullDataset.getDatabase(); 
         
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(datasetFile))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(output_file))){
             bw.write("n,insert_min,insert_avg,insert_max,search_min,search_avg,search_max,theoretical_log2n\n"); 
                 
                 for (int n : trial_sizes){
@@ -98,4 +100,3 @@ public class Experiment {
     }
 }
     
-
