@@ -159,7 +159,7 @@ public class GenericsKbAVLApp{
                     case 2:
 
                         String keyfile = ""; 
-                        System.out.println("Please enter the name of the file pf list of keys you want to parse: "); 
+                        System.out.println("Please enter the name of the file of list of keys you want to parse: "); 
                         keyfile = sc.nextLine();
 
                         main.createFile(keyfile); 

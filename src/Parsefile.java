@@ -97,3 +97,4 @@ public class Parsefile {
 // /home/abrmar043/Assignment 2 - Project/textfiles/GenericsKbShortened.txt
 // /home/abrmar043/Assignment 2 - Project/textfiles/GenericsKB.txt
 // /home/abrmar043/Assignment 2 - Project/textfiles/GenericsKB-queries.txt
+// /home/abrmar043/Assignment 2 - Project/textfiles/results.txt
