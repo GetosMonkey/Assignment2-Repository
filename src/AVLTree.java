@@ -93,26 +93,12 @@ public class AVLTree {
         }
         
         searchComparisons++; 
+
         if (key.compareTo(node.key) < 0) { return searchByKey(node.getLeftChild(), key); } 
         
         else {return searchByKey(node.getRightChild(), key); }
     }
 
-        // key & sentence 
-
-    public Node searchSentence(String key, String sentence){
-        return searchSentence(root, key, sentence);
-    }
-
-    public Node searchSentence(Node node, String key, String sentence){
-        
-        if (node == null || (key.equals(node.key) && node.sentence.contains(sentence))) {return node;}
-
-        if (key.compareTo(node.key) < 0) {return searchSentence(node.getLeftChild(), key, sentence); } 
-        
-        else {return searchSentence(node.getRightChild(), key, sentence);}
-    } 
-    
     //________________________________________________________________________________
 
     //Insertion updated to fit AVL Tree

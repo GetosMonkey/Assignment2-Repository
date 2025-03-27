@@ -21,13 +21,14 @@ public class Experiment {
 
     public static final int[] trial_sizes = {5, 50, 500, 1000, 2500, 5000, 7500, 10000, 25000, 50000}; 
     public static final int num_trials = 10; 
-    public static String output_file = ""; 
+    public static String output_file = "";
+    public static final String datasetFile = "/home/abrmar043/Assignment 2 - Project/textfiles/GenericsKB.txt"; 
+    
 
     public static void main(String[] args){
 
-        Scanner sc = new Scanner(System.in); 
-        System.out.println("Please enter the directory to your full dataset:");
-        String datasetFile = sc.nextLine(); 
+        Scanner sc = new Scanner(System.in);
+        
         System.out.println("Please enter the name of the file you'd like to save your statistics to: "); 
         output_file = sc.nextLine() + ".csv"; 
 
@@ -36,8 +37,13 @@ public class Experiment {
         List<String[]>  database = fullDataset.getDatabase(); 
         
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(output_file))){
-            bw.write("n,insert_min,insert_avg,insert_max,search_min,search_avg,search_max,theoretical_log2n\n"); 
-                
+            //bw.write("n,insert_min,insert_avg,insert_max,search_min,search_avg,search_max,theoretical_log2n\n"); 
+            // reformatted header:
+
+            bw.write(String.format("%-8s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s\n",
+            "n", "Insert Min", "Insert Avg", "Insert Max", 
+            "Search Min", "Search Avg", "Search Max", "Theoretical"));
+            
                 for (int n : trial_sizes){
                     runForSize(n, database, bw); 
                 }
@@ -50,9 +56,10 @@ public class Experiment {
         sc.close(); 
     }
 
-    // running experiment: 
+    // Running experiment: 
 
     public static void runForSize(int n, List<String[]> database, BufferedWriter bw) throws IOException {
+
         List<Integer> insertTotals = new ArrayList<>();
         List<Integer> searchTotals = new ArrayList<>();
         
@@ -85,9 +92,11 @@ public class Experiment {
             double avgSearch = searchTotals.stream().mapToInt(Integer::intValue).average().orElse(0) / Math.min(100, n);
             
             double theoretical = Math.log(n) / Math.log(2);
-            bw.write(String.format("%d,%d,%.2f,%d,%d,%.2f,%d,%.2f\n",
-                n,
 
+            // reformatted information:
+        
+            bw.write(String.format("%-8d | %-12d | %-12.2f | %-12d | %-12d | %-12.2f | %-12d | %-12.2f\n",
+                n,
                 Collections.min(insertTotals) / n,
                 avgInsert,
                 Collections.max(insertTotals) / n,
@@ -95,6 +104,7 @@ public class Experiment {
                 avgSearch,
                 Collections.max(searchTotals) / Math.min(100, n),
                 theoretical));
+
     }
 
     public static List<String[]> getRandomSubset(List<String[]> fullData, int n){
