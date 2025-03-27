@@ -54,6 +54,7 @@ public class Experiment {
         }
 
         System.out.println("experiment completed. Results saved to " + output_file); 
+        
         sc.close(); 
     }
 
@@ -92,21 +93,31 @@ public class Experiment {
             double avgInsert = insertTotals.stream().mapToInt(Integer::intValue).average().orElse(0) / n;
             double avgSearch = searchTotals.stream().mapToInt(Integer::intValue).average().orElse(0) / Math.min(100, n);
             
+            // expecting a time-complexity of OlogN across the board
             double theoreticalS = Math.log(n) / Math.log(2);
-            double theoreticalI = n*(Math.log(n) / Math.log(2)); 
+            double theoreticalI = Math.log(n) / Math.log(2); 
 
             // reformatted information:
         
-            bw.write(String.format("%-8d | %-12d | %-12.2f | %-12d | %-15.2f | %-12d | %-12.2f | %-12d | %-12.2f\n",
+            bw.write(String.format("%-8d | %-12.2f | %-12.2f | %-12.2f | %-15.2f | %-12.2f | %-12.2f | %-12.2f | %-12.2f\n",
             n,
-            Collections.min(insertTotals) / n,
-            avgInsert,
-            Collections.max(insertTotals) / n,
-            theoreticalI,  // New column added
-            Collections.min(searchTotals) / Math.min(100, n),
-            avgSearch,
-            Collections.max(searchTotals) / Math.min(100, n),
-            theoreticalS));
+            (float) Collections.min(insertTotals) / n,
+            (float) avgInsert,
+            (float) Collections.max(insertTotals) / n,
+            (float) theoreticalI,
+            (float) Collections.min(searchTotals) / Math.min(100, n),
+            (float) avgSearch,
+            (float) Collections.max(searchTotals) / Math.min(100, n),
+            (float) theoreticalS));
+
+             // testing:
+
+            System.out.println("N: " + n + 
+            " | Min Insert: " + Collections.min(insertTotals) + 
+            " | Max Insert: " + Collections.max(insertTotals) + 
+            " | Avg Insert: " + avgInsert);
+
+
 
     }
 

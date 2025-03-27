@@ -12,7 +12,11 @@ Today I basically just finished the AVL tree implementation as an edited version
 
 ## 25 March 2025
 
+1) https://interviewkickstart.com/blogs/learn/data-structures-and-algorithms-avl-trees
+
 I completed the program more or less today, essentially just reusing my code from last week again but tweaking it so that it lists all the terms in a given search and outputs it to a file. But since the project requires it I'll also use output redirection in UNIX to save the output of each run to a file.
+
+The link is what I'm basing my theoretical values for the time complexity of my search and insert functions
 
 
 
