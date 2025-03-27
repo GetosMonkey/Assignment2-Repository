@@ -2,7 +2,7 @@
 # 27 March 2025 
 # Graphing program 
 
-import matplotlib.pyplot ad plt 
+import matplotlib.pyplot as plt 
 
 def load_data(filename): 
 
@@ -24,7 +24,7 @@ def load_data(filename):
     max_count_s = []
     search_theo = []
 
-    with open(filename, 'r') ad file: 
+    with open(filename, 'r') as file: 
 
         header = file.readline()
 
@@ -52,7 +52,7 @@ def load_data(filename):
             return n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo
 
 
-def plot_data(n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo)
+def plot_data(n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo): 
     
     # Plot Insert Min, Avg, Max
     plt.figure(figsize=(10, 6))
@@ -83,9 +83,9 @@ def plot_data(n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert
     # Plot Insert counts 
 
     plt.figure(figsize=(10, 6))
-    plt.plot(n_values, count_min_i, label="Insert Min", marker='o')
-    plt.plot(n_values, count_avg_i , label="Insert Avg", marker='o')
-    plt.plot(n_values, count_max_i, label="Insert Max", marker='o')
+    plt.plot(n_values, min_count_i, label="Insert Min", marker='o')
+    plt.plot(n_values, avg_count_i , label="Insert Avg", marker='o')
+    plt.plot(n_values, max_count_i, label="Insert Max", marker='o')
     plt.xlabel('n (Size)')
     plt.ylabel('Insert Comparison Count')
     plt.title('Insert Comparison Counts vs n')
@@ -96,9 +96,9 @@ def plot_data(n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert
     # Plot Search counts 
 
     plt.figure(figsize=(10, 6))
-    plt.plot(n_values, count_min_s, label="Search Min", marker='o')
-    plt.plot(n_values, count_avg_s, label="Search Avg", marker='o')
-    plt.plot(n_values, count_max_s, label="Search Max", marker='o')
+    plt.plot(n_values, min_count_s, label="Search Min", marker='o')
+    plt.plot(n_values, avg_count_s, label="Search Avg", marker='o')
+    plt.plot(n_values, max_count_s, label="Search Max", marker='o')
     plt.xlabel('n (Size)')
     plt.ylabel('Search Comparison Count')
     plt.title('Search Comparison Counts vs n')
@@ -106,10 +106,10 @@ def plot_data(n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert
     plt.grid(True)
     plt.show()
 
-    def main(0: 
+    def main(): 
 
         filename ='/home/abrmar043/Assignment 2 - Project/textfiles/results.txt'
-        n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo = read_data(filename)
+        n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo = load_data(filename)
 
         # Plotting the data
 
