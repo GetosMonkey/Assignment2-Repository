@@ -83,10 +83,16 @@ public class AVLTree {
 
     public Node searchByKey(Node node, String key){
 
-        if (node == null || key.equals(node.key)) {
+        if (node == null){
             searchComparisons++; 
-            return node; }
+            return node; 
+        }
 
+        if (key.equals(node.key)){
+            return node; 
+        }
+        
+        searchComparisons++; 
         if (key.compareTo(node.key) < 0) { return searchByKey(node.getLeftChild(), key); } 
         
         else {return searchByKey(node.getRightChild(), key); }
@@ -122,6 +128,9 @@ public class AVLTree {
         if (node == null){
             return new Node(key, sentence, confidenceScore); 
         }
+
+        insertComparisons++; 
+
         if (key.compareTo(node.key) < 0){
 
             node.setLeftChild(insert(node.getLeftChild(), key, sentence, confidenceScore));
@@ -131,6 +140,8 @@ public class AVLTree {
             node.setRightChild(insert(node.getRightChild(), key, sentence, confidenceScore)); 
         
         } else {
+
+            insertComparisons ++; 
 
             // If the Key already exists update is CS is higher than existing CS
             if (confidenceScore > node.confidenceScore){
