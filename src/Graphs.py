@@ -33,21 +33,21 @@ def load_data(filename):
             parts = [x.strip() for x in line. split ("|")]
             n_values.append(int(parts[0]))
 
-            insert_min.append(float(parts[0]))
-            min_count_i.append(int(parts[1]))
-            insert_avg.append(float(parts[2]))
-            avg_count_i.append(int(parts[3]))
-            insert_max.append(float(parts[4]))
-            max_count_i.append(int(parts[5]))
-            insert_theo.append(float(parts[6]))
+            insert_min.append(float(parts[1]))
+            min_count_i.append(int(parts[2]))
+            insert_avg.append(float(parts[3]))
+            avg_count_i.append(int(parts[4]))
+            insert_max.append(float(parts[5]))
+            max_count_i.append(int(parts[6]))
+            insert_theo.append(float(parts[7]))
 
-            search_min.append(float(parts[7]))
-            min_count_s.append(int(parts[8]))
-            search_avg.append(float(parts[9]))
-            avg_count_s.append(int(parts[10]))
-            search_max.append(float(parts[11]))
-            max_count_s.append(int(parts[12]))
-            search_theo.append(float(parts[13]))
+            search_min.append(float(parts[8]))
+            min_count_s.append(int(parts[9]))
+            search_avg.append(float(parts[10]))
+            avg_count_s.append(int(parts[11]))
+            search_max.append(float(parts[12]))
+            max_count_s.append(int(parts[13]))
+            search_theo.append(float(parts[14]))
 
             return n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo
 
