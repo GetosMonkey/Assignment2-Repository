@@ -40,10 +40,11 @@ public class Experiment {
             //bw.write("n,insert_min,insert_avg,insert_max,search_min,search_avg,search_max,theoretical_log2n\n"); 
             // reformatted header:
 
-            bw.write(String.format("%-8s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s\n",
-            "n", "Insert Min", "Insert Avg", "Insert Max", 
-            "Search Min", "Search Avg", "Search Max", "Theoretical"));
-            
+            bw.write(String.format("%-8s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s\n",
+        "n", "Insert Min", "Insert Avg", "Insert Max", "Theoretical (i)",
+        "Search Min", "Search Avg", "Search Max", "Theoretical (s)"));
+
+
                 for (int n : trial_sizes){
                     runForSize(n, database, bw); 
                 }
@@ -91,19 +92,21 @@ public class Experiment {
             double avgInsert = insertTotals.stream().mapToInt(Integer::intValue).average().orElse(0) / n;
             double avgSearch = searchTotals.stream().mapToInt(Integer::intValue).average().orElse(0) / Math.min(100, n);
             
-            double theoretical = Math.log(n) / Math.log(2);
+            double theoreticalS = Math.log(n) / Math.log(2);
+            double theoreticalI = n*(Math.log(n) / Math.log(2)); 
 
             // reformatted information:
         
-            bw.write(String.format("%-8d | %-12d | %-12.2f | %-12d | %-12d | %-12.2f | %-12d | %-12.2f\n",
-                n,
-                Collections.min(insertTotals) / n,
-                avgInsert,
-                Collections.max(insertTotals) / n,
-                Collections.min(searchTotals) / Math.min(100, n),
-                avgSearch,
-                Collections.max(searchTotals) / Math.min(100, n),
-                theoretical));
+            bw.write(String.format("%-8d | %-12d | %-12.2f | %-12d | %-15.2f | %-12d | %-12.2f | %-12d | %-12.2f\n",
+            n,
+            Collections.min(insertTotals) / n,
+            avgInsert,
+            Collections.max(insertTotals) / n,
+            theoreticalI,  // New column added
+            Collections.min(searchTotals) / Math.min(100, n),
+            avgSearch,
+            Collections.max(searchTotals) / Math.min(100, n),
+            theoreticalS));
 
     }
 
