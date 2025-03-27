@@ -52,9 +52,9 @@ public class Experiment {
 
     // running experiment: 
 
-    private static void runForSize(int n, List<String[]> database, BufferedWriter bw) throws IOException {
-        List<Integer> insertCounts = new ArrayList<>();
-        List<Integer> searchCounts = new ArrayList<>();
+    public static void runForSize(int n, List<String[]> database, BufferedWriter bw) throws IOException {
+        List<Integer> insertTotals = new ArrayList<>();
+        List<Integer> searchTotals = new ArrayList<>();
         
         for (int trial = 0; trial < num_trials; trial++) {
             // Create random subset
@@ -76,21 +76,25 @@ public class Experiment {
             }
             
             // Record results
-            insertCounts.add(tree.getInsertComparisonCount() / n); // Avg per insertion
-            searchCounts.add(tree.getSearchComparisonCount() / queries.size()); // Avg per search
+            insertTotals.add(tree.getInsertComparisonCount());
+            searchTotals.add(tree.getSearchComparisonCount()); 
         }
         
-        // Calculate statistics
-        double theoretical = Math.log(n) / Math.log(2);
-        bw.write(String.format("%d,%d,%.2f,%d,%d,%.2f,%d,%.2f\n",
-            n,
-            Collections.min(insertCounts),
-            insertCounts.stream().mapToInt(Integer::intValue).average().orElse(0),
-            Collections.max(insertCounts),
-            Collections.min(searchCounts),
-            searchCounts.stream().mapToInt(Integer::intValue).average().orElse(0),
-            Collections.max(searchCounts),
-            theoretical));
+            // Calculating averages
+            double avgInsert = insertTotals.stream().mapToInt(Integer::intValue).average().orElse(0) / n;
+            double avgSearch = searchTotals.stream().mapToInt(Integer::intValue).average().orElse(0) / Math.min(100, n);
+            
+            double theoretical = Math.log(n) / Math.log(2);
+            bw.write(String.format("%d,%d,%.2f,%d,%d,%.2f,%d,%.2f\n",
+                n,
+
+                Collections.min(insertTotals) / n,
+                avgInsert,
+                Collections.max(insertTotals) / n,
+                Collections.min(searchTotals) / Math.min(100, n),
+                avgSearch,
+                Collections.max(searchTotals) / Math.min(100, n),
+                theoretical));
     }
 
     public static List<String[]> getRandomSubset(List<String[]> fullData, int n){
