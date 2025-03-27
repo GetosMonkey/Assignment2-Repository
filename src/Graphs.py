@@ -2,7 +2,7 @@
 # 27 March 2025 
 # Graphing program 
 
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 
 def load_data(filename): 
 
