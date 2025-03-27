@@ -30,6 +30,26 @@ public class AVLTree {
 
     public Node root; 
 
+     // Experiment instrumentation
+     public int insertComparisons = 0;
+     public int searchComparisons = 0;
+     public int insertOperations = 0;
+     public int searchOperations = 0;
+ 
+     // Reset counters for new experiment
+     public void resetCounters() {
+         insertComparisons = 0;
+         searchComparisons = 0;
+         insertOperations = 0;
+         searchOperations = 0;
+     }
+
+     // Getters for experiment data
+    public int getInsertComparisonCount() { return insertComparisons; }
+    public int getSearchComparisonCount() { return searchComparisons; }
+    public int getInsertOperationCount() { return insertOperations; }
+    public int getSearchOperationCount() { return searchOperations; }
+
     //Constructor
     public AVLTree(){
         this.root = null; 
@@ -57,12 +77,14 @@ public class AVLTree {
     // Recursive Search 
 
     public Node searchByKey(String key){
+        searchOperations++;
         return searchByKey(root, key); 
     }
 
     public Node searchByKey(Node node, String key){
 
         if (node == null || key.equals(node.key)) {
+            searchComparisons++; 
             return node; }
 
         if (key.compareTo(node.key) < 0) { return searchByKey(node.getLeftChild(), key); } 
@@ -95,6 +117,8 @@ public class AVLTree {
 
     public Node insert(Node node, String key, String sentence, double confidenceScore){
 
+        insertOperations ++; 
+        
         if (node == null){
             return new Node(key, sentence, confidenceScore); 
         }

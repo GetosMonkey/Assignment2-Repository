@@ -95,8 +95,14 @@ public class GenericsKbAVLApp{
                                 Node tuple = tree.searchByKey(line); 
 
                                 if (tuple != null) {
+
                                     bw.write(tuple.key + ": " + tuple.sentence + "(" + tuple.confidenceScore + ")");
-                                } else { bw.write("Term not found: " + line);}
+                                    System.out.println(tuple.key + ": " + tuple.sentence + "(" + tuple.confidenceScore + ")"); 
+
+                                } else { 
+                                    
+                                    bw.write("Term not found: " + line);}
+                                    System.out.println("Term not found: " + line); 
 
                                 bw.newLine(); 
                                 //__________________________________
