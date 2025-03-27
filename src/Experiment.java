@@ -30,7 +30,7 @@ public class Experiment {
         Scanner sc = new Scanner(System.in);
         
         System.out.println("Please enter the name of the file you'd like to save your statistics to: "); 
-        output_file = sc.nextLine() + ".csv"; 
+        output_file = sc.nextLine() + ".txt"; 
 
         Parsefile fullDataset = new Parsefile(datasetFile); 
 
@@ -40,10 +40,9 @@ public class Experiment {
             //bw.write("n,insert_min,insert_avg,insert_max,search_min,search_avg,search_max,theoretical_log2n\n"); 
             // reformatted header:
 
-            bw.write(String.format("%-8s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s\n",
-        "n", "Insert Min", "Insert Avg", "Insert Max", "Theoretical (i)",
-        "Search Min", "Search Avg", "Search Max", "Theoretical (s)"));
-
+            bw.write(String.format("%-8s | %-12s | %-8s | %-12s | %-8s | %-12s | %-8s | %-12s | %-12s | %-8s | %-12s | %-8s | %-12s | %-8s | %-12s\n",
+            "n", "Insert Min", "Count", "Insert Avg", "Count", "Insert Max", "Count", "Theoretical (i)",
+            "Search Min", "Count", "Search Avg", "Count", "Search Max", "Count", "Theoretical (s)"));
 
                 for (int n : trial_sizes){
                     runForSize(n, database, bw); 
@@ -97,17 +96,23 @@ public class Experiment {
             double theoreticalS = Math.log(n) / Math.log(2);
             double theoreticalI = Math.log(n) / Math.log(2); 
 
-            // reformatted information:
+            // reformatted information: n, mn, count, avg, count, mx, count, theoretical (repeat)
         
-            bw.write(String.format("%-8d | %-12.2f | %-12.2f | %-12.2f | %-15.2f | %-12.2f | %-12.2f | %-12.2f | %-12.2f\n",
+            bw.write(String.format("%-8d | %-12.2f | %-8d | %-12.2f | %-8d | %-12.2f | %-8d | %-15.2f | %-12.2f | %-8d | %-12.2f | %-8d | %-12.2f | %-8d | %-12.2f\n", 
             n,
             (float) Collections.min(insertTotals) / n,
+                    Collections.min(insertTotals), 
             (float) avgInsert,
+            (int)        avgInsert * n, 
             (float) Collections.max(insertTotals) / n,
+                    Collections.max(insertTotals), 
             (float) theoreticalI,
             (float) Collections.min(searchTotals) / Math.min(100, n),
+                    Collections.min(searchTotals), 
             (float) avgSearch,
+            (int)   avgSearch * Math.min(100, n), 
             (float) Collections.max(searchTotals) / Math.min(100, n),
+                    Collections.max(searchTotals),  
             (float) theoreticalS));
 
              // testing:
@@ -115,9 +120,10 @@ public class Experiment {
             System.out.println("N: " + n + 
             " | Min Insert: " + Collections.min(insertTotals) + 
             " | Max Insert: " + Collections.max(insertTotals) + 
-            " | Avg Insert: " + avgInsert);
-
-
+            " | Avg Insert: " + avgInsert +
+            " | Min Insert: " + Collections.min(searchTotals) + 
+            " | Max Insert: " + Collections.max(searchTotals) + 
+            " | Avg Insert: " + avgSearch);
 
     }
 
