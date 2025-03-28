@@ -49,8 +49,7 @@ def load_data(filename):
             max_count_s.append(int(parts[13]))
             search_theo.append(float(parts[14]))
 
-            return n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo
-
+        return n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo
 
 def plot_data(n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo): 
     
@@ -106,15 +105,15 @@ def plot_data(n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert
     plt.grid(True)
     plt.show()
 
-    def main(): 
+def main(): 
 
-        filename ='/home/abrmar043/Assignment 2 - Project/textfiles/results.txt'
-        n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo = load_data(filename)
+    filename ='/home/abrmar043/Assignment 2 - Project/textfiles/results.txt'
+    n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo = load_data(filename)
 
-        # Plotting the data
+    # Plotting the data
 
-        plot_data(n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo)
+    plot_data(n_values, insert_min, min_count_i, insert_avg, avg_count_i, insert_max , max_count_i , insert_theo , search_min , min_count_s , search_avg , avg_count_s, search_max , max_count_s, search_theo)
 
-        if __name__ == "__main__": 
-            main()
+if __name__ == "__main__": 
+    main()
 
