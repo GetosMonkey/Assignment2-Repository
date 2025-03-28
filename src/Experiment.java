@@ -91,6 +91,8 @@ public class Experiment {
             // Calculating averages
             double avgInsert = insertTotals.stream().mapToInt(Integer::intValue).average().orElse(0) / n;
             double avgSearch = searchTotals.stream().mapToInt(Integer::intValue).average().orElse(0) / Math.min(100, n);
+            double avgInsertCount = Math.round(Collections.min(insertTotals) + Collections.max(insertTotals)) /2; 
+            double avgSearchCount = Math.round(Collections.min(searchTotals) + Collections.max(searchTotals)) /2; 
             
             // expecting a time-complexity of OlogN across the board
             double theoreticalS = Math.log(n) / Math.log(2);
@@ -103,14 +105,14 @@ public class Experiment {
             (float) Collections.min(insertTotals) / n,
                     Collections.min(insertTotals), 
             (float) avgInsert,
-            (int)        avgInsert * n, 
+            (int)   avgInsertCount,  
             (float) Collections.max(insertTotals) / n,
                     Collections.max(insertTotals), 
             (float) theoreticalI,
             (float) Collections.min(searchTotals) / Math.min(100, n),
                     Collections.min(searchTotals), 
             (float) avgSearch,
-            (int)   avgSearch * Math.min(100, n), 
+            (int)   avgSearchCount,  
             (float) Collections.max(searchTotals) / Math.min(100, n),
                     Collections.max(searchTotals),  
             (float) theoreticalS));
