@@ -2,3 +2,4 @@
 /home/abrmar043/Assignment 2 - Project/textfiles/GenericsKB.txt
 /home/abrmar043/Assignment 2 - Project/textfiles/GenericsKB-queries.txt
 /home/abrmar043/Assignment 2 - Project/textfiles/results.txt
+/home/abrmar043/Assignment 2 - Project/textfiles/TestQueries.txt
